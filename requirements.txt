@@ -1,9 +1,9 @@
 streamlit
 pandas
 numpy
-matplotlib.pyplot
+matplotlib
 seaborn
-plotly.express
+plotly
 pycountry
 geopandas
 sklearn
