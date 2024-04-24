@@ -8,3 +8,4 @@ geopandas
 scikit-learn
 click==8.0.0
 altair==4.*
+streamlit==1.7.0
