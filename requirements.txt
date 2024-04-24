@@ -6,4 +6,3 @@ plotly
 pycountry
 geopandas
 scikit-learn
-streamlit==1.7
