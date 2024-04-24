@@ -6,3 +6,4 @@ plotly
 pycountry
 geopandas
 scikit-learn
+click==8.0.0
