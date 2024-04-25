@@ -15,16 +15,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 
 
-whr=pd.read_csv("world-happiness-report.csv", sep = ';')
+whr=pd.read_csv("world-happiness-report.csv")
 
-#Ajustement du format des variables
-variables = ['Life Ladder', 'Log GDP per capita', 'Social support', 'Healthy life expectancy at birth', \
-             'Freedom to make life choices', 'Generosity', 'Perceptions of corruption']
 
-for col in variables:
-    whr[col] = whr[col].str.replace(',', '.')
-    whr[col] = whr[col].astype(float)
-    
     
 whr2021=pd.read_csv("world-happiness-report-2021.csv")
 
@@ -405,18 +398,18 @@ if page == pages[3] :
     st.write('Nous faisons le choix pour l’analyse des évolutions de ne pas supprimer de Pays de l’analyse même lorsque très peu d’années sont disponibles.')
     st.write("En effet, nous constatons qu'aucun pays n’est présent sur chacun des 18 ans d’historique total.")
 
-    df = pd.DataFrame(columns=["Regional indicator", "Pays", "nb_annee_dispo"])
+    df = pd.DataFrame(columns=["Regional indicator", "Pays", "nb_année_dispo"])
 
     for i in whr2023["Country name"].unique() :
         Région = whr2023["Regional indicator"].loc[whr2023["Country name"] == i].mode()[0]
         nb_annees_pays = whr2023[whr2023["Country name"] == i].shape[0]
-        df1 = pd.DataFrame(np.array([[Région,i,nb_annees_pays]]),columns=["Regional indicator","Pays","nb_annee_dispo"])
+        df1 = pd.DataFrame(np.array([[Région,i,nb_annees_pays]]),columns=["Regional indicator","Pays","nb_année_dispo"])
         df = pd.concat([df,df1],axis = 0)
     
-    df['nb_annee_dispo']=df['nb_annee_dispo'].astype("int")
+    df['nb_année_dispo']=df['nb_année_dispo'].astype("int")
 
-    nb_pays_par_année = pd.DataFrame(df['nb_annee_dispo'].value_counts().sort_index(ascending = False))
-    nb_pays_par_année["cumul"] = nb_pays_par_année["nb_annee_dispo"].cumsum()/165
+    nb_pays_par_année = pd.DataFrame(df['nb_année_dispo'].value_counts().sort_index(ascending = False))
+    nb_pays_par_année["cumul"] = nb_pays_par_année["count"].cumsum()/165
 
     fig, ax = plt.subplots()
     plt.plot(nb_pays_par_année.index,nb_pays_par_année["cumul"]*100,"b:+")
