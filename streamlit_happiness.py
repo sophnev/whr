@@ -392,7 +392,6 @@ if page == pages[2] :
 if page == pages[3] :
     st.title('Nettoyage et pré-processing')
     
-    st.header('Gestion des NaNs')
     st.subheader('Gestion des NaNs')
     
     st.write('Nous faisons le choix pour l’analyse des évolutions de ne pas supprimer de Pays de l’analyse même lorsque très peu d’années sont disponibles.')
